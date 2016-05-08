@@ -11,6 +11,9 @@ gem 'lazy_high_charts'
 gem 'bootstrap_form'
 gem "chartkick"
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'high_voltage'
 group :development, :test do
   gem 'byebug'
 end
@@ -18,9 +21,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-gem 'bootstrap-sass'
-gem 'devise'
-gem 'high_voltage'
+
 gem 'pg'
 gem 'therubyracer', :platform=>:ruby
 group :development do
@@ -29,6 +30,7 @@ group :development do
   gem 'rails_layout'
 end
 group :production do
+  gem 'pg'
   gem 'rails_12factor'
   gem 'unicorn'
 end
