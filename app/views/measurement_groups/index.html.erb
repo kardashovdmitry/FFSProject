@@ -1,0 +1,36 @@
+<h1>Группы измерений</h1>
+
+  <td><a class='btn-primary'><%= link_to 'Добавить группу', new_measurement_group_path %></a></td>
+<td><%= link_to 'Скачать отчет', "/measurement_groups.pdf" %></td></br></br></br>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>Образец</th>
+    <th>Исследователь</th>
+    <th>Прибор</th>
+    <th>Название группы</th>
+    <th>Дата</th>
+
+  </tr>
+
+  <% @measurement_groups.each do |measurement_group| %>
+    <tr>
+      <% if measurement_group.sampleID != nil %>
+      <td><%= Sample.find(measurement_group.sampleID).name %></td>
+      <% end %>
+      <% if measurement_group.researcherID != nil %>
+      <td><%= Researcher.find(measurement_group.researcherID).name %></td>
+      <% end %>
+      <% if measurement_group.deviceID != nil %>
+      <td><%= Device.find(measurement_group.deviceID).name %></td>
+      <% end %>
+      <td><%= measurement_group.name %></td>
+      <td><%= measurement_group.date %></td>
+      <td><%= link_to 'Показать', measurement_group_path(measurement_group) %></td>
+      <td><%= link_to 'Изменить', edit_measurement_group_path(measurement_group) %></td>
+      <td><%= link_to 'Удалить', measurement_group_path(measurement_group),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %></td>
+   </tr>
+  <% end %>
+</table>

@@ -1,0 +1,14 @@
+<h1>Добавить измерение</h1>
+<div class="col-md-4 col-md-offset-4">
+    <%= render 'form' %>
+</div>
+
+<%= form_tag parse_attachments_path, :multipart => true do %>
+   <label for="file">Загрузить измерение из файла</label> <%= file_field_tag "file" %>
+   <%= submit_tag %>
+<% end %>
+
+<%= form_tag display_graphics_attachments_path, :multipart => true do %>
+   <label for="file">Построить графики</label> <%= file_field_tag "file" %>
+   <%= submit_tag %>
+<% end %>

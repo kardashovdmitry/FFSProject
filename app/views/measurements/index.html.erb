@@ -1,0 +1,41 @@
+<h1>Список исследователей</h1>
+
+  <td><a class='btn-primary'><%= link_to 'Добавить данные', new_measurement_path %></a></td>
+<td><%= link_to 'Скачать отчет', "/measurements.pdf" %></td></br></br></br>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>FileName</th>
+    <th>count</th>
+    <th>binTime</th>
+    <th>T</th>
+    <th>C</th>
+    <th>n</th>
+    <th>rpID</th>
+    <th>x</th>
+    <th>y</th>
+    <th>z</th>
+    <th>std</th>
+  </tr>
+
+  <% @measurements.each do |measurement| %>
+    <tr>
+      <td><%= measurement.fileName %></td>
+      <td><%= measurement.count %></td>
+      <td><%= measurement.binTime %></td>
+      <td><%= measurement.T %></td>
+      <td><%= measurement.C %></td>
+      <td><%= measurement.n %></td>
+      <td><%= measurement.rpID %></td>
+      <td><%= measurement.x %></td>
+      <td><%= measurement.y %></td>
+      <td><%= measurement.z %></td>
+      <td><%= measurement.std %></td>
+      <td><%= link_to 'Показать', measurement_path(measurement) %></td>
+      <td><%= link_to 'Изменить', edit_measurement_path(measurement) %></td>
+      <td><%= link_to 'Удалить', measurement_path(measurement),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %></td>
+   </tr>
+  <% end %>
+</table>

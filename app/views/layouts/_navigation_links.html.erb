@@ -1,0 +1,9 @@
+<%# add navigation links to this file %>
+<li><%= link_to 'О нас', page_path('about') %></li>
+<% if user_signed_in? %>
+<li><%= link_to 'Исследователь', researchers_path %></li>
+<%#<li><%= link_to "Прибор", devices_path %> </li>
+<li><%= link_to "Образец", samples_path %></li>
+<li><%= link_to "Измерение", measurements_path %></li>
+<li><%= link_to "Группа измерений", measurement_groups_path %></li>
+<% end %>

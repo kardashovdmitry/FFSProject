@@ -1,0 +1,33 @@
+<h1>Список исследователей</h1>
+
+  <td><a class='btn-primary'><%= link_to 'Добавить данные', new_raw_datum_path %></a></td>
+<td><%= link_to 'Скачать отчет', "/measurements.pdf" %></td></br></br></br>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>groupID</th>
+    <th>FileName</th>
+    <th>linkToFile</th>
+    <th>startTime</th>
+    <th>repetitionNumber</th>
+    <th>kineticsNumber</th>
+    <th>description</th>
+  </tr>
+
+  <% @raw_datums.each do |raw_datum| %>
+    <tr>
+      <td><%= raw_datum.groupID %></td>
+      <td><%= raw_datum.FileName %></td>
+      <td><%= raw_datum.linkToFile %></td>
+      <td><%= raw_datum.startTime %></td>
+      <td><%= raw_datum.repetitionNumber %></td>
+      <td><%= raw_datum.kineticsNumber %></td>
+      <td><%= raw_datum.description %></td>
+      <td><%= link_to 'Показать', raw_datum_path(raw_datum) %></td>
+      <td><%= link_to 'Изменить', edit_raw_datum_path(raw_datum) %></td>
+      <td><%= link_to 'Удалить', raw_datum_path(raw_datum),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %></td>
+   </tr>
+  <% end %>
+</table>

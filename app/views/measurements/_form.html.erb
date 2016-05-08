@@ -1,0 +1,31 @@
+<%= bootstrap_form_for @measurement do |f| %>
+
+  <% if @measurement.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@measurement.errors.count, "error") %> prohibited
+        this measurement from being saved:
+      </h2>
+      <ul>
+        <% @measurement.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.text_field :fileName, label: "Имя файла" %>
+  <%= f.text_field :count, label: "Count" %>
+  <%= f.text_field :binTime, label: "Bin Time" %>
+  <%= f.text_field :T, label: "T" %>
+  <%= f.text_field :C, label: "C" %>
+  <%= f.text_field :n, label: "n" %>
+  <%= f.text_field :rpID, label: "Raw Data" %>
+  <%= f.text_field :x, label: "x value" %>
+  <%= f.text_field :y, label: "y value" %>
+  <%= f.text_field :z, label: "z value" %>
+  <%= f.text_field :std, label: "std" %>
+
+  <%= f.submit %>
+
+<% end %>
+

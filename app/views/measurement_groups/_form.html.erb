@@ -1,0 +1,35 @@
+<%= bootstrap_form_for @measurement_group do |f| %>
+
+  <% if @measurement_group.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@measurement_group.errors.count, "error") %> prohibited
+        this measurement_group from being saved:
+      </h2>
+      <ul>
+        <% @measurement_group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.text_field :name, label: "Название" %>
+
+    <%= f.date_select :date, label: "Дата создания" %>
+
+
+    <%= f.collection_select(:sampleID, Sample.all, :id, :name,label: "Образец") %>
+    <%= f.collection_select(:researcherID, Researcher.all, :id, :name,label: "Исследователь") %>
+    <%= f.collection_select(:deviceID, Device.all, :id, :name,label: "Прибор") %>
+
+
+
+
+
+
+    <%= f.submit %>
+
+
+<% end %>
+

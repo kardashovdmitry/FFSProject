@@ -1,0 +1,8 @@
+<li><%= link_to 'Исследователь', controller: 'researchers' %></li>
+<li><%= link_to "Прибор", controller: 'devices' %></li>
+<li><%= link_to "Образец", controller: 'samples' %></li>
+<li><%= link_to "Измерение",    controller: 'measurements' %></li>
+<li><%= link_to "Группа измерений",    controller: 'measurement_groups' %></li>
+<li><%= link_to "Необработанные данные",    controller: 'raw_datums' %></li>
+
+<% if user_signed_in? %>

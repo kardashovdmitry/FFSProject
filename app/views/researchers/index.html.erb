@@ -1,0 +1,29 @@
+<h1>Список исследователей</h1>
+
+  <td><a class='btn-primary'><%= link_to 'Добавить исследователя', new_researcher_path %></a></td>
+<td><%= link_to 'Скачать отчет', "/researchers.pdf" %></td></br></br></br>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Organizations</th>
+    <th>Address</th>
+    <th>Email</th>
+  </tr>
+
+  <% @researchers.each do |researcher| %>
+    <tr>
+      <td><%= researcher.name %></td>
+      <td><%= researcher.phone %></td>
+      <td><%= researcher.organizations %></td>
+      <td><%= researcher.address %></td>
+      <td><%= researcher.email %></td>
+      <td><%= link_to 'Показать', researcher_path(researcher) %></td>
+      <td><%= link_to 'Изменить', edit_researcher_path(researcher) %></td>
+      <td><%= link_to 'Удалить', researcher_path(researcher),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %></td>
+   </tr>
+  <% end %>
+</table>

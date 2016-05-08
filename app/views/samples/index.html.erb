@@ -1,0 +1,33 @@
+<h1>Список образцов</h1>
+
+  <td><a class='btn-primary'><%= link_to 'Добавить образец', new_sample_path %></a></td>
+<td><%= link_to 'Скачать отчет', "/samples.pdf" %></td></br></br></br>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>Name</th>
+    <th>Weight</th>
+    <th>Size</th>
+    <th>M</th>
+    <th>Lambda_em</th>
+    <th>Lambda_ex</th>
+    <th>Description</th>
+  </tr>
+
+  <% @samples.each do |sample| %>
+    <tr>
+      <td><%= sample.name %></td>
+      <td><%= sample.weight %></td>
+      <td><%= sample.size %></td>
+      <td><%= sample.M %></td>
+      <td><%= sample.lambda_em %></td>
+      <td><%= sample.lambda_ex %></td>
+      <td><%= sample.description %></td>
+      <td><%= link_to 'Показать', sample_path(sample) %></td>
+      <td><%= link_to 'Изменить', edit_sample_path(sample) %></td>
+      <td><%= link_to 'Удалить', sample_path(sample),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %></td>
+   </tr>
+  <% end %>
+</table>

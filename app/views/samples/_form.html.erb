@@ -1,0 +1,57 @@
+<%= form_for @sample do |f| %>
+
+  <% if @sample.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@sample.errors.count, "error") %> prohibited
+        this sample from being saved:
+      </h2>
+      <ul>
+        <% @sample.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :weight %><br>
+    <%= f.text_area :weight %>
+  </p>
+
+  <p>
+    <%= f.label :size %><br>
+    <%= f.text_area :size %>
+  </p>
+
+  <p>
+    <%= f.label :M %><br>
+    <%= f.text_area :M %>
+  </p>
+
+  <p>
+    <%= f.label :lambda_em %><br>
+    <%= f.text_area :lambda_em %>
+  </p>
+
+  <p>
+    <%= f.label :lambda_ex %><br>
+    <%= f.text_area :lambda_ex %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+

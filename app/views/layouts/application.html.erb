@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Remote access system" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ffs Remote" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <style>
+    body {
+      background:#FAFAFA !important;
+  }</style>
+  <body bgcolor="#808080">
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
+
+    <footer class="footer">
+      <small>
+        Created by
+        <a href="http://vk.com/id89261448">Kardashov Dmitry</a>
+      </small>
+      <nav>
+        <ul>
+          <%= render 'layouts/navigation_links' %>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>

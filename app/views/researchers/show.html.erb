@@ -1,0 +1,27 @@
+<p>
+  <strong>Name</strong>
+  <%= @researcher.name %>
+</p>
+
+<p>
+  <strong>Phone</strong>
+  <%= @researcher.phone %>
+</p>
+
+<p>
+  <strong>Organizations</strong>
+  <%= @researcher.organizations %>
+</p>
+
+<p>
+  <strong>Address</strong>
+  <%= @researcher.address %>
+</p>
+
+<p>
+  <strong>Email</strong>
+  <%= @researcher.email %>
+</p>
+
+<%= link_to 'Назад', researchers_path %> |
+<%= link_to 'Изменить', edit_researcher_path(@researcher) %>

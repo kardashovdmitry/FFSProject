@@ -1,0 +1,96 @@
+<script type="text/javascript">
+ $(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'ACR',
+            x: -20 //center
+        },
+
+        xAxis: {
+            title: {
+                text: 'τ, ms'
+            }
+
+        },
+        yAxis: {
+            title: {
+                text: 'G(τ)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+
+        series: [{
+            name: 'ACR',
+            data: <%=raw @cor %>
+
+        }]
+    });
+});
+
+ $(function () {
+    $('#container1').highcharts({
+        title: {
+            text: 'Int',
+            x: -20 //center
+        },
+
+        xAxis: {
+            title: {
+                text: 't, s'
+            }
+
+        },
+        yAxis: {
+            title: {
+                text: 'I(t), kHz'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+
+        series: [{
+            name: 'Int',
+            data: <%=raw @int%>
+
+        }]
+    });
+});
+</script>
+
+
+
+<h3>График ACF</h3>
+<div class="row">
+  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<h3>График Int</h3>
+<div class="row">
+  <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>

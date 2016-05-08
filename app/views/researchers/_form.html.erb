@@ -1,0 +1,45 @@
+<%= form_for @researcher do |f| %>
+
+  <% if @researcher.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@researcher.errors.count, "error") %> prohibited
+        this researcher from being saved:
+      </h2>
+      <ul>
+        <% @researcher.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :phone %><br>
+    <%= f.text_area :phone %>
+  </p>
+
+  <p>
+    <%= f.label :organizations %><br>
+    <%= f.text_area :organizations %>
+  </p>
+
+  <p>
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+  </p>
+
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_area :email %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

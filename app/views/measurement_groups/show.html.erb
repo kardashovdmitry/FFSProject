@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+  <h1>Группа измерений <%= @measurement_group.name %></h1>
+
+    <p>
+      <strong>Дата создания</strong>
+      <%= @measurement_group.date %>
+    </p>
+    <% if @measurement_group.researcherID != nil %>
+    <h2>Исследователь</h2>
+    <p>
+      <strong>Имя</strong>
+      <%= @researcher.name %>
+    </p>
+    <p>
+      <strong>Телефон</strong>
+      <%= @researcher.phone %>
+    </p>
+    <p>
+      <strong>Организация</strong>
+      <%= @researcher.organizations %>
+    </p>
+    <p>
+      <strong>Адрес</strong>
+      <%= @researcher.address %>
+    </p>
+    <p>
+      <strong>Email</strong>
+      <%= @researcher.email %>
+    </p>
+    <% end %>
+
+    <% if @measurement_group.deviceID != nil %>
+    <h2>Прибор</h2>
+    <p>
+      <strong>Название прибора</strong>
+      <%= @device.name %>
+    </p>
+    <p>
+      <strong>Производитель</strong>
+      <%= @device.manufacturer %>
+    </p>
+    <p>
+      <strong>Характеристики</strong>
+      <%= @device.description %>
+    </p>
+    <p>
+      <strong>Модель</strong>
+      <%= @device.model %>
+    </p>
+    <% end %>
+
+    <% if @measurement_group.sampleID != nil %>
+    <h2>Образец</h2>
+    <p>
+      <strong>Название образца</strong>
+      <%= @sample.name %>
+    </p>
+    <p>
+      <strong>Вес</strong>
+      <%= @sample.weight %>
+    </p>
+    <p>
+      <strong>Размер</strong>
+      <%= @sample.size %>
+    </p>
+    <p>
+      <strong>Масса</strong>
+      <%= @sample.M %>
+    </p>
+    <p>
+      <strong>Lambda em</strong>
+      <%= @sample.lambda_em %>
+    </p>
+    <p>
+      <strong>Lambda ex</strong>
+      <%= @sample.lambda_ex %>
+    </p>
+    <p>
+      <strong>Описание</strong>
+      <%= @sample.description %>
+    </p>
+    <% end %>
+
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to 'Назад', measurement_groups_path %> |
+    <%= link_to 'Изменить', edit_measurement_group_path(@measurement_group) %>
+    </div>
+</div>

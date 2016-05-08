@@ -1,0 +1,37 @@
+<p>
+  <strong>Name</strong>
+  <%= @sample.name %>
+</p>
+
+<p>
+  <strong>Weight</strong>
+  <%= @sample.weight %>
+</p>
+
+<p>
+  <strong>Size</strong>
+  <%= @sample.size %>
+</p>
+
+<p>
+  <strong>M</strong>
+  <%= @sample.M %>
+</p>
+
+<p>
+  <strong>Lambda_em</strong>
+  <%= @sample.lambda_em %>
+</p>
+
+<p>
+  <strong>Lambda_ex</strong>
+  <%= @sample.lambda_ex %>
+</p>
+
+<p>
+  <strong>Description</strong>
+  <%= @sample.description %>
+</p>
+
+<%= link_to 'Назад', samples_path %> |
+<%= link_to 'Изменить', edit_sample_path(@sample) %>
