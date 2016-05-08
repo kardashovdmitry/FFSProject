@@ -52,10 +52,10 @@ test:
 
 production:
   adapter:  postgresql
-  host:     localhost
+  host:     ec2-54-225-79-232.compute-1.amazonaws.com
   encoding: unicode
-  database: ffs_remote_production
+  database: d2n455jh7uil83
   pool:     5
-  username: kardashovdmitry
-  password: Qwerty123!_
+  username: qeuamrwjrhepqj
+  password: W-U8RbZON6nT2bDmFsTNUEVxBv
   template: template0
