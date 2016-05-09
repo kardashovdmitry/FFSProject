@@ -1,11 +1,11 @@
 class ResearchersController < ApplicationController
   def index
-    @researchers = Researcher.all
-
+    @researchersAll = Researcher.all
+    @researchers = Researcher.paginate(:page => params[:page], :per_page => 1)
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = ReportPdf.new(@researchers)
+        pdf = ReportPdf.new(@researchersAll)
         send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
       end
     end

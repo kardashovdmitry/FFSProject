@@ -1,5 +1,5 @@
 <h1>Список исследователей</h1>
-
+<%= will_paginate @measurements %>
   <td><a class='btn-primary'><%= link_to 'Добавить данные', new_measurement_path %></a></td>
 <td><%= link_to 'Скачать отчет', "/measurements.pdf" %></td></br></br></br>
 

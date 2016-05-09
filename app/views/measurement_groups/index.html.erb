@@ -1,3 +1,15 @@
+
+<%= form_tag(measurement_groups_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+  <%= submit_tag "Search" %>
+  <% if @measurement_groups.present? %>
+
+<% else %>
+  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>
+
+
+<%= will_paginate @measurement_groups %>
 <h1>Группы измерений</h1>
 
   <td><a class='btn-primary'><%= link_to 'Добавить группу', new_measurement_group_path %></a></td>
@@ -34,3 +46,4 @@
    </tr>
   <% end %>
 </table>
+<% end %>

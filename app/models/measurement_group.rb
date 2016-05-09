@@ -8,4 +8,11 @@ class MeasurementGroup < ActiveRecord::Base
     belongs_to :researcher, :class_name => 'Researcher', :foreign_key => :researcherID
     belongs_to :device, :class_name => 'Device', :foreign_key => :deviceID
     has_many :raw_data, :class_name => 'RawDatum', :foreign_key => :groupID
+
+    def self.search(search)
+  # Title is for the above case, the OP incorrectly had 'name'
+      where("date ILIKE ?", "%#{search}%")
+      where("name ILIKE ?", "%#{search}%")
+
+    end
 end

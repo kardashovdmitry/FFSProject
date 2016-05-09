@@ -14,6 +14,10 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'high_voltage'
+gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
+gem 'will_paginate'
+gem "breadcrumbs_on_rails"
+
 group :development, :test do
   gem 'byebug'
 end

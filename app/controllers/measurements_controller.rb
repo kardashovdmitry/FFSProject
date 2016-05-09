@@ -1,7 +1,8 @@
 class MeasurementsController < ApplicationController
 
   def index
-    @measurements = Measurement.all
+    #@measurements = Measurement.all
+    @measurements = Measurement.paginate(:page => params[:page], :per_page => 1)
   end
 
   def new

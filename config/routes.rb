@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   resources :raw_datums
   resources :description_for_rds
 
+  resources :researchers do
+  collection do
+    get 'researchers_pdf'
+  end
+end
 
   #resources :measurement_groups, shallow: true do
   #  resources :devices
