@@ -6,10 +6,10 @@ class MeasurementGroupsController < ApplicationController
     @measurement_groups = MeasurementGroup.paginate(:page => params[:page], :per_page => 1)
 
     if params[:search]
-      @measurement_groups = MeasurementGroup.search(params[:search]).order("name DESC")
-      @measurement_groups = @measurement_groups.paginate(:page => params[:page], :per_page => 1)
+      @measurement_groupsS = MeasurementGroup.search(params[:search]).order("name DESC")
+      @measurement_groups = @measurement_groupsS.paginate(:page => params[:page], :per_page => 1)
     else
-      @measurement_groups = MeasurementGroup.all.order('name DESC')
+      @measurement_groups = MeasurementGroup.paginate(:page => params[:page], :per_page => 1)
     end
 
   end
