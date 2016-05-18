@@ -1,4 +1,5 @@
 class DescriptionForRdsController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @descriptionForRds = DescriptionForRd.all
   end

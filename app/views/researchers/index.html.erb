@@ -1,15 +1,34 @@
-<%= will_paginate @researchers %>
-<h1>Список исследователей</h1>
+ <div class="panel panel-default">
 
-  <td><a class='btn-primary'><%= link_to 'Добавить исследователя', new_researcher_path %></a></td>
-<td><%= link_to 'Скачать отчет', "/researchers.pdf" %></td></br></br></br>
+ <div class="panel-body">
+<div style="float:right;">
+  <%= link_to 'Добавить исследователя', new_researcher_path, :class => 'btn btn-default btn-md' %>
+  <%= link_to 'Скачать отчет', "/researchers.pdf", :class => 'btn btn-default btn-md' %>
+</div>
 
-<table class="table table-striped table-condensed">
+
+<%= form_tag(researchers_path, :method => "get", id: "search-form", :class => "form-inline") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Введите запрос", class: 'form-control' %>
+  <%= submit_tag "Найти", class: "btn btn-default"%>
+  <% if @researchers.present? %>
+
+<% else %>
+  <p>Записи по параметру <%= params[:search] %> не найдены.</p>
+<% end %>
+
+ </div>
+ </div>
+
+ <div class="panel panel-info">
+ <div class="panel-heading">Таблица исследователей</div>
+ <div class="panel-body" style="min-height: 300px">
+
+    <table class="table table-striped table-condensed table-bordered table-hover">
   <tr>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Organizations</th>
-    <th>Address</th>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Организация</th>
+    <th>Адрес</th>
     <th>Email</th>
   </tr>
 
@@ -20,11 +39,19 @@
       <td><%= researcher.organizations %></td>
       <td><%= researcher.address %></td>
       <td><%= researcher.email %></td>
-      <td><%= link_to 'Показать', researcher_path(researcher) %></td>
-      <td><%= link_to 'Изменить', edit_researcher_path(researcher) %></td>
-      <td><%= link_to 'Удалить', researcher_path(researcher),
+      <td><%= link_to 'Показать', researcher_path(researcher), :class => 'btn btn-link btn-sm' %></td>
+      <td><%= link_to 'Изменить', edit_researcher_path(researcher), :class => 'btn btn-link btn-sm' %></td>
+      <td><%= link_to 'Удалить', researcher_path(researcher), :class => 'btn btn-link btn-sm',
               method: :delete,
               data: { confirm: 'Вы уверены?' } %></td>
    </tr>
   <% end %>
 </table>
+ </div>
+
+ </div>
+
+ <%= will_paginate @researchers , renderer: BootstrapPagination::Rails%>
+
+
+ <% end %>

@@ -1,32 +1,42 @@
+ <div class="panel panel-default">
 
-<%= form_tag(measurement_groups_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-  <%= submit_tag "Search" %>
+ <div class="panel-body">
+<div style="float:right;">
+  <%= link_to 'Добавить группу', new_measurement_group_path, :class => 'btn btn-default btn-md' %>
+  <%= link_to 'Скачать отчет', "/measurement_groups.pdf", :class => 'btn btn-default btn-md' %>
+</div>
+
+
+<%= form_tag(measurement_groups_path, :method => "get", id: "search-form", :class => "form-inline") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Введите запрос", class: 'form-control' %>
+  <%= submit_tag "Найти", class: "btn btn-default"%>
   <% if @measurement_groups.present? %>
 
 <% else %>
-  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+  <p>Записи по параметру <%= params[:search] %> не найдены.</p>
 <% end %>
 
+ </div>
+ </div>
 
-<%= will_paginate @measurement_groups %>
-<h1>Группы измерений</h1>
+ <div class="panel panel-info">
+ <div class="panel-heading">Группы измерений</div>
+ <div class="panel-body" style="min-height: 300px">
 
-  <td><a class='btn-primary'><%= link_to 'Добавить группу', new_measurement_group_path %></a></td>
-<td><%= link_to 'Скачать отчет', "/measurement_groups.pdf" %></td></br></br></br>
-
-<table class="table table-striped table-condensed">
+    <table class="table table-striped table-condensed table-bordered table-hover">
   <tr>
+    <th>Название группы</th>
+    <th>Дата</th>
     <th>Образец</th>
     <th>Исследователь</th>
     <th>Прибор</th>
-    <th>Название группы</th>
-    <th>Дата</th>
-
   </tr>
 
-  <% @measurement_groups.each do |measurement_group| %>
+
+      <% @measurement_groups.each do |measurement_group| %>
     <tr>
+      <td><%= measurement_group.name %></td>
+      <td><%= measurement_group.date %></td>
       <% if measurement_group.sampleID != nil %>
       <td><%= Sample.find(measurement_group.sampleID).name %></td>
       <% end %>
@@ -36,14 +46,21 @@
       <% if measurement_group.deviceID != nil %>
       <td><%= Device.find(measurement_group.deviceID).name %></td>
       <% end %>
-      <td><%= measurement_group.name %></td>
-      <td><%= measurement_group.date %></td>
-      <td><%= link_to 'Показать', measurement_group_path(measurement_group) %></td>
-      <td><%= link_to 'Изменить', edit_measurement_group_path(measurement_group) %></td>
-      <td><%= link_to 'Удалить', measurement_group_path(measurement_group),
+      <td><%= link_to 'Показать', measurement_group_path(measurement_group), :class => 'btn btn-link btn-sm' %></td>
+      <td><%= link_to 'Изменить', edit_measurement_group_path(measurement_group), :class => 'btn btn-link btn-sm' %></td>
+      <td><%= link_to 'Удалить', measurement_group_path(measurement_group), :class => 'btn btn-link btn-sm',
               method: :delete,
               data: { confirm: 'Вы уверены?' } %></td>
    </tr>
   <% end %>
 </table>
-<% end %>
+ </div>
+
+ </div>
+
+ <%= will_paginate @measurement_groups , renderer: BootstrapPagination::Rails%>
+
+
+ <% end %>
+
+

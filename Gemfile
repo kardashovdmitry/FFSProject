@@ -17,7 +17,7 @@ gem 'high_voltage'
 gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
 gem 'will_paginate'
 gem "breadcrumbs_on_rails"
-
+gem 'will_paginate-bootstrap'
 group :development, :test do
   gem 'byebug'
 end

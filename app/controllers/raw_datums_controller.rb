@@ -1,4 +1,5 @@
 class RawDatumsController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @raw_datums = RawDatum.all

@@ -1,15 +1,16 @@
 class MeasurementGroupsController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     #@measurement_groups = MeasurementGroup.all
     #@measurement_groups = @measurement_groups.paginate(:page => params[:page], :per_page => 5)
-    @measurement_groups = MeasurementGroup.paginate(:page => params[:page], :per_page => 1)
+    @measurement_groups = MeasurementGroup.paginate(:page => params[:page], :per_page => 8)
 
     if params[:search]
       @measurement_groupsS = MeasurementGroup.search(params[:search]).order("name DESC")
-      @measurement_groups = @measurement_groupsS.paginate(:page => params[:page], :per_page => 1)
+      @measurement_groups = @measurement_groupsS.paginate(:page => params[:page], :per_page => 8)
     else
-      @measurement_groups = MeasurementGroup.paginate(:page => params[:page], :per_page => 1)
+      @measurement_groups = MeasurementGroup.paginate(:page => params[:page], :per_page => 8)
     end
 
   end

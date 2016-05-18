@@ -1,36 +1,79 @@
+
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Remote access system" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ffs Remote" %>">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
-  <style>
-    body {
-      background:#FAFAFA !important;
-  }</style>
-  <body bgcolor="#808080">
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= content_for?(:title) ? yield(:title) : "Система удаленного доступа FSS" %></title>
+        <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ffs Remote" %>">
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+    </head>
+    <style>
+        body {
+        background:#FAFAFA !important;
+        }
 
-    <footer class="footer">
-      <small>
-        Created by
-        <a href="http://vk.com/id89261448">Kardashov Dmitry</a>
-      </small>
-      <nav>
-        <ul>
-          <%= render 'layouts/navigation_links' %>
-        </ul>
-      </nav>
-    </footer>
-  </body>
+
+    </style>
+    <body bgcolor="#808080">
+        <header>
+            <!-- <%= render 'layouts/navigation' %> -->
+            <div class="navbar navbar-default navbar-fixed-top headroom" >
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- Button for smallest screens -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <%= link_to image_tag("logoNew.png", :border=>0), root_path, class: 'navbar-brand' %>
+                        </div>
+                        <ul class="nav navbar-nav pull-left">
+                            <%= render 'layouts/navigation_links' %>
+                        </ul>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav pull-right">
+                            <li><%= render 'layouts/nav_links_for_auth' %></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+            <!-- /.navbar -->
+        </header>
+
+        <div class="panel-group" >
+
+            <div><%= render 'layouts/messages' %></div>
+
+          <div class="panel panel-default" style="min-height: 800px; background-color: ##F5FFFA">
+            <div class="panel-body">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer navbar-fixed-bottom">
+            <div class="panel-footer">
+                <nav>
+                    <small>
+                    Created by
+                    <a href="http://vk.com/id89261448">Kardashov Dmitry</a>
+                    </small>
+                    <nav>
+                        <ul>
+                            <%= render 'layouts/navigation_links' %>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+        </footer>
+    </body>
 </html>
+

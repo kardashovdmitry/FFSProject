@@ -1,4 +1,5 @@
 class AttachmentsController < ApplicationController
+  before_filter :authenticate_user!
  before_action :set_attachment, only: [:show, :edit, :update, :destroy]
 
   # GET /documents
@@ -87,10 +88,6 @@ class AttachmentsController < ApplicationController
                 @duration = d[0]
               end
         end
-
-        @measurement = Measurement.new(:fileName => @dt, :count => @repeat, :binTime => @duration,
-            :x => @px, :y => @py, :z => @pz, :C => '0')
-        @measurement.save
 
         forGraph = Hash.new
         forIntns = Hash.new
@@ -205,47 +202,16 @@ class AttachmentsController < ApplicationController
               end
         end
 
-        @measurement = Measurement.new(:fileName => @dt, :count => @repeat, :binTime => @duration,
-            :x => @px, :y => @py, :z => @pz, :C => '0')
-        @measurement.save
-
-        forGraph = Hash.new
-        forIntns = Hash.new
-        comma.each_with_index do |element,index|
-            if index == 0 || element[0].to_f == 0.000000
-                puts "first"
-            else
-                if index > 20 and element[1].to_f > 3
-                    forIntns[element[0]] = element[1]
-                else
-                    forGraph[Math.log(element[0].to_f)] = element[1]
-                end
-            end
+        @measurement = Measurement.new(:fileName => @dt, :count => @repeat.to_i, :binTime => @duration.to_f,
+            :x => @px.to_f, :y => @py.to_f, :z => @pz.to_f, :C => '0'.to_f)
+        if @measurement.save
+          logger.error "Bad file_data: #{@measurement}"
         end
 
-        #logger.error "equal : #{grades}"
-        #logger.error "forGraph : #{forGraph}"
-        #logger.error "forIntns : #{forIntns}"
-        @cor = Array.new
-        forGraph.each_with_index do |element,index|
-            if index != 0
-                arr = Array.new
-                arr.push(element[0].to_f)
-                arr.push(element[1].to_f)
-                @cor.push(arr)
-            end
-        end
+        puts @measurement
+        #redirect_to @measurement, notice: 'Document was successfully created.'
 
-        @int = Array.new
-        forIntns.each_with_index do |element,index|
-            arr = Array.new
-            arr.push(element[0].to_f)
-            arr.push(element[1].to_f)
-            @int.push(arr)
-        end
-        redirect_to @measurement, notice: 'Document was successfully created.'
-
-        #redirect_to @measurement
+        redirect_to @measurement
     elsif file_data.respond_to?(:path)
       xml_contents = File.read(file_data.path)
     else

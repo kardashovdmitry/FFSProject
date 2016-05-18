@@ -5,4 +5,13 @@ class Measurement < ActiveRecord::Base
     has_many :linkeds, :class_name => 'Linked', :foreign_key => :measurementID
     belongs_to :raw_datum, :class_name => 'RawDatum', :foreign_key => :rpID
     has_many :measurement_description_for_measurements, :class_name => 'MeasurementDescriptionForMeasurement', :foreign_key => :measurementID
+
+    validates :C, :count, numericality: true
+    validates  :C, :count, presence: true
+
+    def self.search(search)
+  # Title is for the above case, the OP incorrectly had 'name'
+      where('"fileName" ILIKE ?', "%#{search}%")
+    end
+
 end

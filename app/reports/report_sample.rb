@@ -1,7 +1,7 @@
-class ReportPdf < Prawn::Document
-  def initialize(researchers)
+class ReportSample < Prawn::Document
+  def initialize(sample)
     super()
-    @researchers = researchers
+    @sample = sample
     header
     text_content
     table_content
@@ -18,7 +18,7 @@ class ReportPdf < Prawn::Document
 
     # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
     bounding_box([0, y_position], :width => 300, :height => 50) do
-      text "Report for table Researcher", size: 15, style: :bold
+      text "Report for table Sample", size: 15, style: :bold
     end
 
 
@@ -39,9 +39,10 @@ class ReportPdf < Prawn::Document
   end
 
   def researcher_rows
-    [['Имя', 'Телефон', 'Организация', 'Адрес', 'Email']] +
-      @researchers.map do |researcher|
-      [researcher.name, researcher.phone, researcher.organizations, researcher.address, researcher.email]
+    [['Name', 'Weight', 'Size', 'M', 'Lambda em', 'Lambda ex', 'Description']] +
+      @sample.map do |researcher|
+      [researcher.name, researcher.weight, researcher.size, researcher.M, researcher.lambda_em,
+        researcher.lambda_ex, researcher.description]
     end
   end
 end

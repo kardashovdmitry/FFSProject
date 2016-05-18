@@ -1,8 +1,27 @@
 class MeasurementsController < ApplicationController
+  before_filter :authenticate_user!
+  #before_filter :current_user!
 
   def index
-    #@measurements = Measurement.all
-    @measurements = Measurement.paginate(:page => params[:page], :per_page => 1)
+
+    @measurements = Measurement.paginate(:page => params[:page], :per_page => 8)
+
+    if params[:search]
+      @measurementsS = Measurement.search(params[:search])
+      @measurements = @measurementsS.paginate(:page => params[:page], :per_page => 8)
+    else
+      @measurements = Measurement.paginate(:page => params[:page], :per_page => 8)
+    end
+
+    @measurementsAll = Measurement.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportMeasurement.new(@measurementsAll)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+
   end
 
   def new
@@ -162,8 +181,7 @@ def parse
 
   private
   def measurement_params
-    params.require(:measurement).permit(:fileName, :count, :binTime, :T, :C, :n,
-                                                        :rpID, :x, :y, :z, :std)
+    params.require(:measurement).permit(:fileName, :count, :binTime, :T, :C, :n, :x, :y, :z, :std)
 
 end
 

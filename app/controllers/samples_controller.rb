@@ -1,6 +1,25 @@
 class SamplesController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
-    @samples = Sample.all
+    @samples = Sample.paginate(:page => params[:page], :per_page => 8)
+
+    if params[:search]
+      @samplesS = Sample.search(params[:search])
+      @samples = @samplesS.paginate(:page => params[:page], :per_page => 8)
+    else
+      @samples = Sample.paginate(:page => params[:page], :per_page => 8)
+    end
+
+    @samplesAll = Sample.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+
+        pdf = ReportSample.new(@samplesAll)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
   end
 
   def new
