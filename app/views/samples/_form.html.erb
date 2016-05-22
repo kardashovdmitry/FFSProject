@@ -1,4 +1,4 @@
-<%= form_for @sample do |f| %>
+<%= bootstrap_form_for @sample do |f| %>
 
   <% if @sample.errors.any? %>
     <div id="error_explanation">
@@ -14,44 +14,14 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label :weight %><br>
-    <%= f.text_area :weight %>
-  </p>
-
-  <p>
-    <%= f.label :size %><br>
-    <%= f.text_area :size %>
-  </p>
-
-  <p>
-    <%= f.label :M %><br>
-    <%= f.text_area :M %>
-  </p>
-
-  <p>
-    <%= f.label :lambda_em %><br>
-    <%= f.text_area :lambda_em %>
-  </p>
-
-  <p>
-    <%= f.label :lambda_ex %><br>
-    <%= f.text_area :lambda_ex %>
-  </p>
-
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
+  <%= f.text_field :name, label: "Название" %>
+  <%= f.text_field :weight, label: "Weight" %>
+  <%= f.text_field :size, label: "Size" %>
+  <%= f.text_field :M, label: "M" %>
+  <%= f.text_field :lambda_em, label: "Lambda em" %>
+  <%= f.text_field :lambda_ex, label: "Lambda ex" %>
+  <%= f.text_field :description, label: "Description" %>
+  <%= f.submit %>
 
 <% end %>
 

@@ -13,6 +13,16 @@ class MeasurementGroupsController < ApplicationController
       @measurement_groups = MeasurementGroup.paginate(:page => params[:page], :per_page => 8)
     end
 
+    @measurement_groupsAll = MeasurementGroup.all
+    #@researchers = Researcher.paginate(:page => params[:page], :per_page => 8)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportMeasurementGroup.new(@measurement_groupsAll)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+
   end
 
   def new

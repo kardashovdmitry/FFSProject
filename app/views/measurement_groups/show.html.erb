@@ -1,93 +1,91 @@
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-  <h1>Группа измерений <%= @measurement_group.name %></h1>
+<div class="panel panel-default">
 
-    <p>
+ <div class="panel panel-info">
+ <div class="panel-heading">Группа измерений <%= @measurement_group.name %></div>
+ <div class="panel-body" style="">
+<p>
       <strong>Дата создания</strong>
       <%= @measurement_group.date %>
     </p>
+
     <% if @measurement_group.researcherID != nil %>
     <h2>Исследователь</h2>
-    <p>
-      <strong>Имя</strong>
-      <%= @researcher.name %>
-    </p>
-    <p>
-      <strong>Телефон</strong>
-      <%= @researcher.phone %>
-    </p>
-    <p>
-      <strong>Организация</strong>
-      <%= @researcher.organizations %>
-    </p>
-    <p>
-      <strong>Адрес</strong>
-      <%= @researcher.address %>
-    </p>
-    <p>
-      <strong>Email</strong>
-      <%= @researcher.email %>
-    </p>
-    <% end %>
+    <table class="table table-striped table-condensed table-bordered table-hover">
+  <tr>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Организация</th>
+    <th>Адрес</th>
+    <th>Email</th>
+  </tr>
 
-    <% if @measurement_group.deviceID != nil %>
+
+    <tr>
+      <td><%= @researcher.name %></td>
+      <td><%= @researcher.phone %></td>
+      <td><%= @researcher.organizations %></td>
+      <td><%= @researcher.address %></td>
+      <td><%= @researcher.email %></td>
+   </tr>
+
+</table>
+<% end %>
+
+<% if @measurement_group.deviceID != nil %>
     <h2>Прибор</h2>
-    <p>
-      <strong>Название прибора</strong>
-      <%= @device.name %>
-    </p>
-    <p>
-      <strong>Производитель</strong>
-      <%= @device.manufacturer %>
-    </p>
-    <p>
-      <strong>Характеристики</strong>
-      <%= @device.description %>
-    </p>
-    <p>
-      <strong>Модель</strong>
-      <%= @device.model %>
-    </p>
-    <% end %>
+    <table class="table table-striped table-condensed table-bordered table-hover">
+  <tr>
+    <th>Название прибора</th>
+    <th>Производитель</th>
+    <th>Характеристики</th>
+    <th>Модель</th>
+  </tr>
 
-    <% if @measurement_group.sampleID != nil %>
+
+    <tr>
+      <td><%= @device.name %></td>
+      <td><%= @device.manufacturer %></td>
+      <td><%= @device.description %></td>
+      <td><%= @device.model %></td>
+   </tr>
+
+</table>
+<% end %>
+
+<% if @measurement_group.sampleID != nil %>
     <h2>Образец</h2>
-    <p>
-      <strong>Название образца</strong>
-      <%= @sample.name %>
-    </p>
-    <p>
-      <strong>Вес</strong>
-      <%= @sample.weight %>
-    </p>
-    <p>
-      <strong>Размер</strong>
-      <%= @sample.size %>
-    </p>
-    <p>
-      <strong>Масса</strong>
-      <%= @sample.M %>
-    </p>
-    <p>
-      <strong>Lambda em</strong>
-      <%= @sample.lambda_em %>
-    </p>
-    <p>
-      <strong>Lambda ex</strong>
-      <%= @sample.lambda_ex %>
-    </p>
-    <p>
-      <strong>Описание</strong>
-      <%= @sample.description %>
-    </p>
-    <% end %>
+    <table class="table table-striped table-condensed table-bordered table-hover">
+  <tr>
+    <th>Название образца</th>
+    <th>Weight</th>
+    <th>Size</th>
+    <th>М</th>
+    <th>Lambda em</th>
+    <th>Lambda ex</th>
+    <th>Описание</th>
+  </tr>
 
-    </div>
-</div>
 
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%= link_to 'Назад', measurement_groups_path %> |
-    <%= link_to 'Изменить', edit_measurement_group_path(@measurement_group) %>
-    </div>
+    <tr>
+      <td><%= @sample.name %></td>
+      <td><%= @sample.weight %></td>
+      <td><%= @sample.size %></td>
+      <td><%= @sample.M %></td>
+      <td><%= @sample.lambda_em %></td>
+      <td><%= @sample.lambda_ex %></td>
+      <td><%= @sample.description %></td>
+   </tr>
+
+</table>
+<% end %>
+
+<div style="float:left;">
+  <%= link_to 'Назад', measurement_groups_path, :class => 'btn btn-default btn-md' %>
+  <%= link_to 'Изменить', edit_measurement_group_path(@measurement_group), :class => 'btn btn-default btn-md' %>
 </div>
+ </div>
+
+ </div>
+
+
+

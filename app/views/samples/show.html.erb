@@ -1,37 +1,37 @@
-<p>
-  <strong>Name</strong>
-  <%= @sample.name %>
-</p>
+<div class="panel panel-default">
 
-<p>
-  <strong>Weight</strong>
-  <%= @sample.weight %>
-</p>
+ <div class="panel panel-info">
+ <div class="panel-heading">Образец</div>
+ <div class="panel-body" style="">
 
-<p>
-  <strong>Size</strong>
-  <%= @sample.size %>
-</p>
+    <table class="table table-striped table-condensed table-bordered table-hover">
+  <tr>
+    <th>Название</th>
+    <th>Weight</th>
+    <th>Size</th>
+    <th>M</th>
+    <th>Lambda_em</th>
+    <th>Lambda_ex</th>
+    <th>Описание</th>
+  </tr>
 
-<p>
-  <strong>M</strong>
-  <%= @sample.M %>
-</p>
 
-<p>
-  <strong>Lambda_em</strong>
-  <%= @sample.lambda_em %>
-</p>
+    <tr>
+      <td><%= @sample.name %></td>
+      <td><%= @sample.weight %></td>
+      <td><%= @sample.size %></td>
+      <td><%= @sample.M %></td>
+      <td><%= @sample.lambda_em %></td>
+      <td><%= @sample.lambda_ex %></td>
+      <td><%= @sample.description %></td>
+   </tr>
 
-<p>
-  <strong>Lambda_ex</strong>
-  <%= @sample.lambda_ex %>
-</p>
+</table>
+<div style="float:left;">
+  <%= link_to 'Назад', samples_path, :class => 'btn btn-default btn-md' %>
+  <%= link_to 'Изменить', edit_sample_path(@sample), :class => 'btn btn-default btn-md' %>
+</div>
+ </div>
 
-<p>
-  <strong>Description</strong>
-  <%= @sample.description %>
-</p>
+ </div>
 
-<%= link_to 'Назад', samples_path %> |
-<%= link_to 'Изменить', edit_sample_path(@sample) %>

@@ -29,6 +29,16 @@ class ReportSample < Prawn::Document
     # This makes a call to product_rows and gets back an array of data that will populate the columns and rows of a table
     # I then included some styling to include a header and make its text bold. I made the row background colors alternate between grey and white
     # Then I set the table column widths
+    font_families.update(
+    "DejaVuSans" => {
+      :normal => "app/reports/DejaVuSans.ttf",
+      :bold => "app/reports/DejaVuSans-Bold.ttf",
+      :italic => "app/reports/DejaVuSans-Oblique.ttf",
+      :bold_italic => "app/reports/DejaVuSans-BoldOblique",
+    }
+  )
+  fallback_fonts(["DejaVuSans"])
+
     table researcher_rows do
       row(0).font_style = :bold
       self.header = true

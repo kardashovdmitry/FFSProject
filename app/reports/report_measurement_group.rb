@@ -1,7 +1,7 @@
-class ReportPdf < Prawn::Document
-  def initialize(researchers)
+class ReportMeasurementGroup < Prawn::Document
+  def initialize(measurements)
     super()
-    @researchers = researchers
+    @measurementGroup = measurements
     header
     text_content
     table_content
@@ -18,7 +18,7 @@ class ReportPdf < Prawn::Document
 
     # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
     bounding_box([0, y_position], :width => 300, :height => 50) do
-      text "Report for table Researcher", size: 15, style: :bold
+      text "Report for table Measurement Group", size: 15, style: :bold
     end
 
 
@@ -49,9 +49,24 @@ class ReportPdf < Prawn::Document
   end
 
   def researcher_rows
-    [['Имя', 'Телефон', 'Организация', 'Адрес', 'Email']] +
-      @researchers.map do |researcher|
-      [researcher.name, researcher.phone, researcher.organizations, researcher.address, researcher.email]
+    [['Name', 'Date', 'Sample', 'Researcher', 'Device']] +
+      @measurementGroup.map do |researcher|
+        @researcher = Researcher.new;
+        @researcher.name = '';
+        @device = Device.new;
+        @device.name = '';
+        @sample = Sample.new;
+        @sample.name = '';
+        if researcher.researcherID != nil
+          @researcher = Researcher.find(researcher.researcherID)
+        end
+        if researcher.deviceID != nil
+          @device = Device.find(researcher.deviceID)
+        end
+        if researcher.sampleID != nil
+          @sample = Sample.find(researcher.sampleID)
+        end
+      [researcher.name, researcher.date, @researcher.name, @device.name, @sample.name]
     end
   end
 end

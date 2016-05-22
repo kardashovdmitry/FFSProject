@@ -1,4 +1,4 @@
-<%= form_for @researcher do |f| %>
+<%= bootstrap_form_for @researcher do |f| %>
 
   <% if @researcher.errors.any? %>
     <div id="error_explanation">
@@ -14,32 +14,13 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
+  <%= f.text_field :name, label: "Имя" %>
+  <%= f.text_field :phone, label: "Телефон" %>
+  <%= f.text_field :organizations, label: "Организация" %>
+  <%= f.text_field :address, label: "Адрес" %>
+  <%= f.text_field :email, label: "Email" %>
+  <%= f.submit %>
 
-  <p>
-    <%= f.label :phone %><br>
-    <%= f.text_area :phone %>
-  </p>
 
-  <p>
-    <%= f.label :organizations %><br>
-    <%= f.text_area :organizations %>
-  </p>
-
-  <p>
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-  </p>
-
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_area :email %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
 
 <% end %>
